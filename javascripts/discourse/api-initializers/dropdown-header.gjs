@@ -6,11 +6,17 @@ export default apiInitializer("1.29.0", (api) => {
     return;
   }
 
-  if (settings.links_position === "right") {
-    api.headerButtons.add("dropdown-header", CustomHeaderLinks, {
-      before: "auth",
-    });
-  } else {
-    api.renderAfterWrapperOutlet("home-logo", CustomHeaderLinks);
+  switch(settings.links_position) {
+    case "left":
+      api.renderAfterWrapperOutlet("home-logo", CustomHeaderLinks);
+      break;
+    case "right":
+      api.headerButtons.add("dropdown-header", CustomHeaderLinks, {
+        before: "auth",
+      });
+      break;
+    case "below":
+      api.renderInOutlet("after-header", CustomHeaderLinks);
+      break;
   }
 });
