@@ -108,6 +108,11 @@ show_caret_icons:
   type: bool
   description:
     en: "Show caret icons on dropdown links"
+enable_transitions:
+  default: true
+  type: bool
+  description:
+    en: "Enable animated transitions on dropdown."
 main_link_color:
   default: 'var(--primary-low-mid)'
   type: string

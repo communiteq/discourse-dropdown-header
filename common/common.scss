@@ -35,6 +35,9 @@
         margin-left: 0.5rem;
         svg {
           transition: transform 0.25s ease;
+          @if $enable_transitions == "false" {
+            transition-duration: 0s;
+          }
         }
       }
 
@@ -44,11 +47,16 @@
         .custom-header-dropdown {
           transform: scale(1);
           transition-delay: 0s;
+
+          @if $enable_transitions == "false" {
+            transition-duration: 0s;
+          }
         }
 
         .custom-header-link-caret svg {
           transform: rotate(90deg);
         }
+
       }
 
       &.with-url {
@@ -65,6 +73,11 @@
     transform: scale(0);
     transition: transform 0.2s ease;
     transition-delay: 0.1s;
+    @if $enable_transitions == "false" {
+      transition-duration: 0s;
+      transition-delay: 0s;
+    }
+
     will-change: transform;
 
     &-link {
