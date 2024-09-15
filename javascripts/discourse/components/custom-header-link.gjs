@@ -66,10 +66,7 @@ export default class CustomHeaderLink extends Component {
 
   @action
   redirectToUrl(url) {
-    if (this.site.mobileView) {
-      this.toggleHeaderLinks();
-    }
-
+    this.toggleHeaderLinks();
     DiscourseURL.routeTo(url);
   }
 

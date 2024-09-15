@@ -40,23 +40,37 @@
           }
         }
       }
+      @media (hover: hover) {
+        &:hover {
+          color: $main_link_hover_color;
+          .custom-header-dropdown {
+            transform: scale(1);
+            transition-delay: 0s;
 
-      &:hover {
-        color: $main_link_hover_color;
-
-        .custom-header-dropdown {
-          transform: scale(1);
-          transition-delay: 0s;
-
-          @if $enable_transitions == "false" {
-            transition-duration: 0s;
+            @if $enable_transitions == "false" {
+              transition-duration: 0s;
+            }
+          }
+          .custom-header-link-caret svg {
+            transform: rotate(90deg);
           }
         }
+      }
+      @media (hover: none) {
+        &.expanded {
+          color: $main_link_hover_color;
+          .custom-header-dropdown {
+            transform: scale(1);
+            transition-delay: 0s;
 
-        .custom-header-link-caret svg {
-          transform: rotate(90deg);
+            @if $enable_transitions == "false" {
+              transition-duration: 0s;
+            }
+          }
+          .custom-header-link-caret svg {
+            transform: rotate(90deg);
+          }
         }
-
       }
 
       &.with-url {

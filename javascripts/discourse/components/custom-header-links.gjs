@@ -13,17 +13,26 @@ export default class CustomHeaderLinks extends Component {
   @service siteSettings;
   @service site;
 
-  @tracked showLinks = !this.site.mobileView;
+  @tracked showLinks = !(this.useMobileCollapsingView);
 
   @action
   toggleHeaderLinks() {
-    this.showLinks = !this.showLinks;
-
-    if (this.showLinks) {
-      document.body.classList.add("dropdown-header-open");
+    if (this.useMobileCollapsingView) {
+      this.showLinks = !this.showLinks;
+      if (this.showLinks) {
+        document.body.classList.add("dropdown-header-open");
+      } else {
+        document.body.classList.remove("dropdown-header-open");
+      }
     } else {
-      document.body.classList.remove("dropdown-header-open");
-    }
+      document.querySelectorAll('.custom-header-link').forEach(function(otherDropdown) {
+        otherDropdown.classList.remove('expanded');
+      });
+  }
+  }
+
+  get useMobileCollapsingView() {
+    return this.site.mobileView && settings.mobile_view_collapsed;
   }
 
   get headerLinks() {
@@ -37,7 +46,7 @@ export default class CustomHeaderLinks extends Component {
         (if @outletArgs.minimized "scrolling")
       }}
     >
-      {{#if this.site.mobileView}}
+      {{#if this.useMobileCollapsingView}}
         <span class="btn-custom-header-dropdown-mobile">
           <DButton
             @icon="caret-square-down"
